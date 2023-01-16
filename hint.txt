@@ -1,0 +1,26 @@
+# apyori
+
+start = time.perf_counter()
+rules = apriory2(transactions=transactions,min_support = 0.03, min_confidence = 0.25, min_lift=1.0001)
+results = list(rules)
+time2 = (time.perf_counter()-start)
+t.append(time2)
+
+for result in results:
+    for subset in result[2]:
+        print(subset[0],subset[1])
+        print("Support: {0}; Confidence {1}; Lift {2}; ".format(result[1],subset[2],subset[3]))
+        print()
+print('Затраченное время', t[-1])
+
+# efficient_apriori
+
+start = time.perf_counter()
+itemsets, rules = apriory3(transactions,min_support = 0.03, min_confidence = 0.25)
+time3 = (time.perf_counter()-start)
+t.append(time3)
+
+for i in range(len(rules)):
+    print(rules[i])
+    print()
+print('Затраченное время', t[-1])
